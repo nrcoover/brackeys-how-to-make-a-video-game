@@ -420,6 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1031347936}
+  forwardForce: 1250
+  sidewasyForce: 750
 --- !u!1 &1330524779
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +448,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330524779}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 09281655b67bdee4da7a08a1d13a1b38, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
