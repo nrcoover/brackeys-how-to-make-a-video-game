@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+#pragma warning disable IDE0051
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rigidBody;
@@ -35,3 +36,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
+#pragma warning restore IDE0051

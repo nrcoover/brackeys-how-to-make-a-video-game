@@ -61,11 +61,13 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\LevelComplete.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\MovementTriggerSphere.cs" />
      <Compile Include="Assets\Scripts\PlayerCollision.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\RiverCharacterBase.cs" />
      <Compile Include="Assets\Scripts\ScoreTracker.cs" />
+     <Compile Include="Assets\Scripts\Triggers\AttackingTriggerSphere.cs" />
+     <Compile Include="Assets\Scripts\Triggers\MovementTriggerSphere.cs" />
+     <Compile Include="Assets\Scripts\Triggers\PeakingTriggerSphere.cs" />
      <Compile Include="Assets\Scripts\Utils\Tags.cs" />
      <None Include="Assets\PolygonNatureBiomes\PNB_Core\Shaders\SyntyStudios_Basic_LOD_Shader.shader" />
      <None Include="Assets\PolygonNatureBiomes\PNB_Core\Shaders\SyntyStudios_CloudShader_NoFog.shader" />

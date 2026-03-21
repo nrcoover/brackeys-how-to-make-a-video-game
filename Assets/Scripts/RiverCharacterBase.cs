@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Drawing;
+using UnityEngine;
 
 #pragma warning disable IDE0051
 public class RiverCharacterBase : MonoBehaviour
@@ -17,6 +18,17 @@ public class RiverCharacterBase : MonoBehaviour
         constantForce = GetComponent<ConstantForce>();
         playerMovement = GetComponent<PlayerMovement>();
     }
+
+    //private void Start()
+    //{
+    //    Renderer renderer = GetComponent<Renderer>();
+
+    //    // Use pre-built colors like Color.red, Color.blue, etc.
+    //    if (renderer != null)
+    //    {
+    //        renderer.material.color = UnityEngine.Color.black;
+    //    }
+    //}
 
     private void FixedUpdate()
     {
@@ -67,6 +79,19 @@ public class RiverCharacterBase : MonoBehaviour
     private void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    // Debug Functions
+    public void DebugChangeColor(UnityEngine.Color color)
+    {
+        Renderer renderer = GetComponent<Renderer>();
+
+        // Use pre-built colors like Color.red, Color.blue, etc.
+        if (renderer != null)
+        {
+            Debug.Log("Color has been changed!");
+            renderer.material.color = color; 
+        }
     }
 }
 
