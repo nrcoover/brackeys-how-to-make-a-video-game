@@ -386,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 7703421338587113157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 100, z: 100}
+  m_LocalScale: {x: 65, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4729790837877467641}
   m_RootOrder: 0
@@ -498,12 +498,12 @@ PrefabInstance:
     - target: {fileID: 460716859950921028, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.59
+      value: -5.75
       objectReference: {fileID: 0}
     - target: {fileID: 460716859950921028, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 460716859950921028, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 950007903163002878, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
       propertyPath: m_Name
-      value: CrocodileTease
+      value: CrocodileHunt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cca2c9e6202e134ca7bdfe13213d5b3, type: 3}
@@ -599,7 +599,7 @@ PrefabInstance:
     - target: {fileID: 460716859950921028, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.68
       objectReference: {fileID: 0}
     - target: {fileID: 460716859950921028, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
@@ -639,7 +639,7 @@ PrefabInstance:
     - target: {fileID: 950007903163002878, guid: 1cca2c9e6202e134ca7bdfe13213d5b3,
         type: 3}
       propertyPath: m_Name
-      value: CrocodileHunt
+      value: CrocodileTease
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cca2c9e6202e134ca7bdfe13213d5b3, type: 3}

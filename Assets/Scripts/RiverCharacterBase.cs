@@ -12,7 +12,7 @@ public class RiverCharacterBase : MonoBehaviour
     public PlayerMovement playerMovement;
     
     private new ConstantForce constantForce;
-    private Coroutine peakingCoroutine;
+    private Coroutine enemyAnimationCoroutine;
 
     private float movingSpeed;
     private bool isMoving = false;
@@ -60,9 +60,9 @@ public class RiverCharacterBase : MonoBehaviour
     {
         isMoving = true;
 
-        if (peakingCoroutine == null)
+        if (enemyAnimationCoroutine == null)
         {
-            peakingCoroutine = StartCoroutine(TriggerEnemyAnimations());
+            enemyAnimationCoroutine = StartCoroutine(TriggerEnemyAnimations());
         }
     }
 
@@ -96,20 +96,46 @@ public class RiverCharacterBase : MonoBehaviour
         var duration = 0.5f;
         var waitTime = 0.15f;
 
-        var startPosition = caimanTease.transform.position;
+        var startPosition = caimanTease.transform.localPosition;
         var endPosition = startPosition + Vector3.up * movementAmount;
-        yield return StartCoroutine(MoveOverTime(startPosition, endPosition, duration));
+        yield return StartCoroutine(MoveOverTime(caimanTease, startPosition, endPosition, duration));
 
         yield return new WaitForSeconds(waitTime);
 
-        var newPosition = caimanTease.transform.position;
-        var finalPosition = newPosition + Vector3.down * movementAmount;
-        yield return StartCoroutine(MoveOverTime(newPosition, finalPosition, duration));
+        startPosition = caimanTease.transform.localPosition;
+        endPosition = startPosition + Vector3.down * movementAmount;
+        yield return StartCoroutine(MoveOverTime(caimanTease, startPosition, endPosition, duration));
 
-        peakingCoroutine = null;
+        enemyAnimationCoroutine = StartCoroutine(TriggerHuntAnimation());
     }
 
-    private IEnumerator MoveOverTime(Vector3 startPosition, Vector3 endPosition, float duration)
+    private IEnumerator TriggerHuntAnimation()
+    {
+        var waitTime = 0.15f;
+
+        var movementAmount = 7;
+        var duration = 0.65f;
+        var startPosition = caimanHunt.transform.localPosition;
+        var endPosition = startPosition + Vector3.up * movementAmount;
+        var startRotation = caimanHunt.transform.localRotation;
+        var endRotation = startRotation * Quaternion.Euler(90f, 0f, 0f);
+        yield return StartCoroutine(MoveOverTime(caimanHunt, startPosition, endPosition, duration, startRotation, endRotation));
+
+        yield return new WaitForSeconds(waitTime);
+
+        movementAmount = 9;
+        duration = 0.75f;
+        startPosition = caimanHunt.transform.localPosition;
+        endPosition = startPosition + Vector3.down * movementAmount;
+        startRotation = caimanHunt.transform.localRotation;
+        endRotation = startRotation * Quaternion.Euler(90f, 0f, 0f);
+        yield return StartCoroutine(MoveOverTime(caimanHunt, startPosition, endPosition, duration, startRotation, endRotation));
+
+        enemyAnimationCoroutine = null;
+    }
+
+    private IEnumerator MoveOverTime(GameObject enemyObject, Vector3 startPosition, Vector3 endPosition,
+        float duration, Quaternion? startRotation = null, Quaternion? endRotation = null)
     {
         var timeElapsed = 0f;
 
@@ -117,13 +143,27 @@ public class RiverCharacterBase : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
 
-            caimanTease.transform.position =
-                Vector3.Lerp(startPosition, endPosition, timeElapsed / duration);
+            var lerpTime = timeElapsed / duration;
+
+            enemyObject.transform.localPosition = Vector3.Lerp(startPosition, endPosition, lerpTime);
+
+            if (startRotation.HasValue && endRotation.HasValue)
+            {
+                enemyObject.transform.localRotation = Quaternion.Slerp(
+                    startRotation.Value,
+                    endRotation.Value,
+                    lerpTime);
+            }
 
             yield return null;
         }
 
-        caimanTease.transform.position = endPosition;
+        enemyObject.transform.localPosition = endPosition;
+
+        if (endRotation.HasValue)
+        {
+            enemyObject.transform.localRotation = endRotation.Value;
+        }
     }
 
     // Debug Functions
