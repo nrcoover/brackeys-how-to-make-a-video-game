@@ -1,15 +1,19 @@
-﻿using System.Drawing;
+﻿using System.Collections;
 using UnityEngine;
 
 #pragma warning disable IDE0051
 public class RiverCharacterBase : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField]private float percentRelativeCharacterSpeed;
+    [SerializeField] private float percentRelativeCharacterSpeed;
+    [SerializeField] private GameObject caimanHunt;
+    [SerializeField] private GameObject caimanTease;
 
     public PlayerMovement playerMovement;
     
     private new ConstantForce constantForce;
+    private Coroutine peakingCoroutine;
+
     private float movingSpeed;
     private bool isMoving = false;
 
@@ -55,6 +59,11 @@ public class RiverCharacterBase : MonoBehaviour
     public void StartMoving()
     {
         isMoving = true;
+
+        if (peakingCoroutine == null)
+        {
+            peakingCoroutine = StartCoroutine(TriggerEnemyAnimations());
+        }
     }
 
     // Called by MovementTriggerSphere
@@ -79,6 +88,42 @@ public class RiverCharacterBase : MonoBehaviour
     private void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator TriggerEnemyAnimations()
+    {
+        var movementAmount = 2;
+        var duration = 0.5f;
+        var waitTime = 0.15f;
+
+        var startPosition = caimanTease.transform.position;
+        var endPosition = startPosition + Vector3.up * movementAmount;
+        yield return StartCoroutine(MoveOverTime(startPosition, endPosition, duration));
+
+        yield return new WaitForSeconds(waitTime);
+
+        var newPosition = caimanTease.transform.position;
+        var finalPosition = newPosition + Vector3.down * movementAmount;
+        yield return StartCoroutine(MoveOverTime(newPosition, finalPosition, duration));
+
+        peakingCoroutine = null;
+    }
+
+    private IEnumerator MoveOverTime(Vector3 startPosition, Vector3 endPosition, float duration)
+    {
+        var timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+
+            caimanTease.transform.position =
+                Vector3.Lerp(startPosition, endPosition, timeElapsed / duration);
+
+            yield return null;
+        }
+
+        caimanTease.transform.position = endPosition;
     }
 
     // Debug Functions
