@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 3368825933912370655}
+  player: {fileID: 3368825933912370661}
 --- !u!95 &1326494674
 Animator:
   serializedVersion: 3

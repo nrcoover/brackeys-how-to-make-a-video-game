@@ -113,7 +113,7 @@ public class RiverCharacterBase : MonoBehaviour
     {
         var waitTime = 0.15f;
 
-        var movementAmount = 7;
+        var movementAmount = 7.0f;
         var duration = 0.65f;
         var startPosition = caimanHunt.transform.localPosition;
         var endPosition = startPosition + Vector3.up * movementAmount;
@@ -123,7 +123,7 @@ public class RiverCharacterBase : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
 
-        movementAmount = 9;
+        movementAmount = 10f;
         duration = 0.75f;
         startPosition = caimanHunt.transform.localPosition;
         endPosition = startPosition + Vector3.down * movementAmount;

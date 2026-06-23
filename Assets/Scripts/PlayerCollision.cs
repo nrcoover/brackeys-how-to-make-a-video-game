@@ -3,6 +3,7 @@
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement movement;
+    [SerializeField] private GameObject player;
     //public GameManager gameManager;
 
     void OnCollisionEnter(Collision collisionInfo)
@@ -11,6 +12,7 @@ public class PlayerCollision : MonoBehaviour
         {
             movement.enabled = false;
             FindObjectOfType<GameManager>().EndGame();
+            player.SetActive(false);
         }
 
         //if (collisionInfo.collider.tag == "EndLevel")
